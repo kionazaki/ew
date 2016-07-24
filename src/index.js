@@ -4,9 +4,16 @@ import App from "app/components/App/App";
 
 
 
-require("./css/index.css");
-ReactDOM.render(<App />, document.getElementById("root"));
+document.addEventListener("DOMContentLoaded", function() {
+    let ewRoot = document.createElement('div');
+    ewRoot.setAttribute('id', 'ewRoot');
+    document.body.appendChild(ewRoot);
+    ReactDOM.render(<App />, document.getElementById("ewRoot"));
+});
 
 
-import testFunc from "app/tests/testFunc";
-testFunc();
+
+
+
+
+

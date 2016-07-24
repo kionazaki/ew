@@ -26,31 +26,10 @@ config = {
   },
 
   module: {
-    loaders: [
-
-      // Такая комбинация позволяет собирать из всех модулей подключенные css (тоже как модули) в один текст
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-      }
-    ]
+    loaders: []
   },
 
-
-
-
-  plugins: [
-    // Добавляет index.html в билд.
-    // Причем сам подключает app.css (который готовися в ExtractTextPlugin) и app.js
-    new HTMLWebpackPlugin({
-      template: path.resolve("src/index.html"),
-      minify: { collapseWhitespace: true } // минификация HTML (убирает лишние пробелы)
-    }),
-    // Собирает весь текст CSS в билд
-    new ExtractTextPlugin('app.css')
-  ]
-
-
+  plugins: []
 };
 
 module.exports = config;

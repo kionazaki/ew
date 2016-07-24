@@ -4,28 +4,27 @@ var path = require('path');
 
 module.exports = {
 
-  entry: [
-      "webpack-dev-server/client?http://localhost:3000",
-      "webpack/hot/only-dev-server"
-  ].concat(config.entry),
+  entry: config.entry,
 
   output: config.output,
 
   resolve: config.resolve,
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    ].concat(config.plugins),
+  plugins: config.plugins,
 
   // Подключаем лоадеры
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
+      loaders: ['babel'],
       include: path.resolve("src")
     }].concat(config.module.loaders)
   },
 
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 100
+  },
 
 
   // Подключаю source-map для дебага

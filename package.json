@@ -7,6 +7,7 @@
   "author": "Nazaki <kio.nazaki@gmail.com>",
   "scripts": {
     "start": "node server/webpack-dev-server.js",
+    "build-dev": "webpack --config webpack/webpack.dev.config.js",
     "start-prod": "node server/server.js",
     "build-prod": "webpack --config webpack/webpack.prod.config.js",
     "clean": "rm -rf build",
