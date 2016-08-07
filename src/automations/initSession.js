@@ -1,4 +1,7 @@
-import sendCommand from "app/library/sendCommand"
+import sendCommand from "app/library/sendCommand";
+import API from "app/library/API";
+
+const name = 'initSession';
 
 function initSession(state){
     console.log(state);
@@ -7,25 +10,24 @@ function initSession(state){
         && state.session.mode === null
         && state.session.issueFromServer === null){
 
-        console.log('getIssueId()');
+        getIssueId(state);
+
     }
-
-
-
-
-    //var toggleAll = true;
-    //state.todos.items.forEach((item)=>{
-    //    if (!item.checked){
-    //        toggleAll = false;
-    //    }
-    //});
-    //state.todos.toggleAll = toggleAll;
-
-
-
 
     return state;
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getIssueId(state){
+    let projectId = state.setup.id;
+    API(
+        `http://kionazaki.github.io/tmp/get-issue-id.json?projectid=${projectId}`,
+        (r)=>{sendCommand(name, 'setIssueId', r.data)},
+        (e)=>{console.log(e.status + ': ' + e.statusText);}
+    );
+}
+
+
 
 export default initSession;
 
