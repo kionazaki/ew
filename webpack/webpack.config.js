@@ -14,7 +14,7 @@ config = {
 
   output: {
     path: path.resolve("build"),
-    filename: "app.js"
+    filename: "hints.js"
   },
 
   // Настройка загрузки модулей

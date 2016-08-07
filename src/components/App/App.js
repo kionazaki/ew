@@ -1,15 +1,28 @@
 import React from "react";
-import { Router, Route, hashHistory } from 'react-router';
-import TodoApp from "app/components/TodoApp/TodoApp";
+import state$ from "app/state";
+import connect from "app/rx-state/connect";
+import EasyWebApp from "app/components/EasyWebApp/EasyWebApp";
+
+
+
+import ReactDOM from "react-dom";
+//import init from "app/library/init"
+
+
+
+
 
 class App extends React.Component {
     render() {
+        const state =  this.props;
         return(
-            <Router  history = {hashHistory}>
-                <Route path="*" component={TodoApp} />
-            </Router>
+            <EasyWebApp  {...state} />
         );
     }
 }
 
-export default App;
+//init.createRootElement();
+//ReactDOM.render(<App/>, document.getElementById('ewRoot'));
+
+
+export default connect(state$)(App);

@@ -1,19 +1,21 @@
+import "babel-polyfill";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "app/components/App/App";
+import RootObject from "app/library/RootObject";
+import getTokenAsync from "app/library/getTokenAsync";
+import config from "app/config";
+import generatorCSS from "app/css/generatorCSS";
 
 
+// Добавляем в конец документа наш root-элемент
+var rootObject = new RootObject(config.RootElementId);
 
-document.addEventListener("DOMContentLoaded", function() {
-    let ewRoot = document.createElement('div');
-    ewRoot.setAttribute('id', 'ewRoot');
-    document.body.appendChild(ewRoot);
-    ReactDOM.render(<App />, document.getElementById("ewRoot"));
-});
+// Асинхронно получаем Token
+getTokenAsync(config.iframeSrc, _ewPars.id);
 
+// Генерируем CSS
+generatorCSS();
 
-
-
-
-
-
+// Рендерим DOM
+ReactDOM.render(<App/>, rootObject.element);

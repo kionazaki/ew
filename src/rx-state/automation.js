@@ -1,14 +1,9 @@
 import Rx from "rxjs";
-import toggleAll from "app/automations/toggleAll";
-
-function foo(state){
-    return state;
-}
+import initSession from "app/automations/initSession";
 
 function automation(state$) {
-   return state$
-       .map(r=>foo(r))
-       .map(r=>toggleAll(r));
+    return state$
+       .map(r=>initSession(r));
 }
 
 export default automation;
